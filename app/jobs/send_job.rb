@@ -7,7 +7,7 @@ class SendJob < ApplicationJob
 
     message = Message.all.sample.text
 
-    if message.nil?
+    unless message.present?
       logger.error " existing message: '#{message}'"
     else
       logger.debug "Message existed: '#{message}'"
@@ -16,7 +16,7 @@ class SendJob < ApplicationJob
     url_send = URI.parse(uri)
     params = { msg: message }
     url_send.query = URI.encode_www_form( params ) # кодирование параметров в строку запроса
-    res = Net::HTTP.get_response(url_send) # собственно запрос
+    res = Net::HTTP.get_response(url_send) # запрос
 
     # проверяем статус ответа
     if res.code.match(/20*/)
