@@ -11,6 +11,9 @@
 /log/*
 /tmp/*
 !/log/.keep
+!/log/dev/
+/log/dev/*
+!/log/dev/.keep
 !/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
