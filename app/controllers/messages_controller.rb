@@ -5,28 +5,26 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
-    # расписание показов сообщений
-      # начиная с 5 секунды после запуска
-      t1 = Time.now + 5.second
-      t2 = Time.now + 15.second
-      schedule = [t1, t2, Date.tomorrow.noon]
-
-    # отправляем 3 сообщения с интервалом в 2 секунды
-    csope_messages = 3 # если nil то от 1 до 5
-    interval = 2 # если nil то рандомная величина до 10 сек
-
-=begin     schedule.each do |item|
-      ScheduleJob.set(wait_until: item).perform_later(csope_messages, interval)
-    end
-=end
   end
 
   def send_message
-
-    params.ssss
-    schedule.each do |item|
-      ScheduleJob.set(wait_until: item).perform_later(csope_messages, interval)
+    if params[:uri].match(/^(http){1}s?(:\/\/){1}[\w.\/]*/)
+      uri = params[:uri]
+    else
+      uri = ENV["URL_FOR_SEND"]
     end
+    t1 = Time.now + params[:score].to_i.second
+    t2 = t1 + params[:score_show].to_i.second
+    # добавляем 3тий показ на завтра
+    schedule = [t1, t2, Date.tomorrow.noon]
+
+    csore_messages = params[:messages].to_i
+    interval = params[:interval].to_i
+
+    schedule.each do |item|
+      ScheduleJob.set(wait_until: item).perform_later(csore_messages, interval, uri)
+    end
+    redirect_to root_path
   end
 
   def create
