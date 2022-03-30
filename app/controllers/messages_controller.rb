@@ -3,10 +3,6 @@ class MessagesController < ApplicationController
   require 'uri'
   require 'net/http'
 
-  def input
-    @message = params[:msg]
-  end
-
   def index
     @messages = Message.all
     # расписание показов сообщений
