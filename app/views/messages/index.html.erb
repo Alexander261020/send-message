@@ -1,15 +1,18 @@
 <h1>Messages</h1>
 <div class="row">
   <div class="bg-info col-6">
-    <%= form_with url: "/messages", method: :post do |form| %>
-      <%= form.text_field :text, placeholder: "Введите текст сообщения" %>
-      <%= form.submit "create" %>
-    <% end %>
-    <% @messages.each do |message| %>
-      <%= message.text %><br>
-    <% end %>
+    <div>
+      <%= form_with url: "/messages", method: :post do |form| %>
+        <%= form.text_field :text, placeholder: "Введите текст сообщения" %>
+        <%= form.submit "create" %>
+      <% end %>
+      <% @messages.each do |message| %>
+        <%= message.text %><br>
+      <% end %>
+    </div>
   </div>
 
   <div class="bg-success col-6">
+    <h4>Расписание показа сообщений</h4>
   </div>
 </div>
