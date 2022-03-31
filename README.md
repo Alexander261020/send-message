@@ -1,24 +1,17 @@
-# README
+# Добавляем в очередь задачи по отправке сообщений
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Что имеем:
 
-Things you may want to cover:
+* Ruby 3.0.3
+* Rail 7
+* Esbuild для сборки assets
+* Bootstrap - стили
+* PostgreSQL - БД
 
-* Ruby version
+## Для запуска
+Выполняем команды: bundle, rails css:install:bootstrap, yarn build:css, yarn build, rails db:create, rails db:migrate; 
 
-* System dependencies
+#### Добавляем сообщения
+reails db:seed
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Или через сервер кликая на кнопочку "create"
