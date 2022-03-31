@@ -13,8 +13,10 @@ class SendMessages
     csore_messages = params[:messages].to_i
     interval = params[:interval].to_i
 
+    messages = Message.all.map { |msg| msg.text }
+
     score.times do
-      ScheduleJob.set(wait_until: time_show).perform_later(csore_messages, interval, uri)
+      ScheduleJob.set(wait_until: time_show).perform_later(csore_messages, interval, uri, messages)
       time_show += next_show
     end
   end

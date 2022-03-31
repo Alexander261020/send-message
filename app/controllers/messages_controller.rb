@@ -1,8 +1,8 @@
-class MessagesController < ApplicationController
-  require 'open-uri'
-  require 'uri'
-  require 'net/http'
+require 'open-uri'
+require 'uri'
+require 'net/http'
 
+class MessagesController < ApplicationController
   def index
     @messages = Message.all
   end
